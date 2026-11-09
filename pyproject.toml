@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "fabsentinel"
+version = "0.1.0"
+description = "Fault detection and root-cause diagnosis for semiconductor process tools (multivariate SPC + physics signatures)."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Franck Nangomoko" }]
+dependencies = ["numpy>=1.24", "pandas>=2.0", "scipy>=1.10", "scikit-learn>=1.3", "matplotlib>=3.7"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "ruff>=0.5"]
+
+[project.scripts]
+fabsentinel = "fabsentinel.cli:main"
+
+[tool.setuptools]
+packages = ["fabsentinel"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 160
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]
+
+[tool.ruff.lint.per-file-ignores]
+"fabsentinel/report.py" = ["E501"]  # HTML/CSS template lines
